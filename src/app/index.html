@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBA Finanças, Banking e Cooperativismo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #2cbc59;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .row {
+            display: flex;
+            margin-top: 20px;
+        }
+        .col-50 {
+            width: 50%;
+            padding: 20px;
+        }
+        .col-33 {
+            width: 33.33%;
+            padding: 20px;
+        }
+        .full-col {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+        .cta-button {
+            background-color: #2cbc59;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+        }
+        .cta-button:hover {
+            background-color: white;
+            color: black;
+            border: 1px solid #2cbc59;
+            font-size: 18px;
+        }
+        .image {
+            width: 100%;
+            height: 200px;
+        }
+        .modal, .overlay {
+            display: none;
+            position: fixed;
+        }
+        .modal {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            width: 400px;
+        }
+        .overlay {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: 500;
+        }
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form input[type="submit"] {
+            background-color: #2cbc59;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        form input[type="submit"]:hover {
+            background-color: white;
+            color: black;
+            border: 1px solid #2cbc59;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">MBA Finanças, Banking e Cooperativismo</div>
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-50">
+                <h2>Sobre o Curso</h2>
+                <p>O MBA em Finanças, Banking e Cooperativismo é ideal para profissionais que desejam aprofundar seus conhecimentos no setor financeiro, bancário e cooperativista.</p>
+                <button class="cta-button" onclick="openModal()">Quero obter</button>
+            </div>
+            <div class="col-50">
+                <img class="image" src="/public/image1.jpg" alt="Imagem 1">
+            </div>
+        </div>
+        
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-33">
+                <h3>Gestão Financeira</h3>
+                <p>Aprenda técnicas avançadas de gestão financeira para aplicação no mercado.</p>
+            </div>
+            <div class="col-33">
+                <h3>Investimentos</h3>
+                <p>Domine a análise de investimentos para tomada de decisões estratégicas.</p>
+            </div>
+            <div class="col-33">
+                <h3>Governança Cooperativa</h3>
+                <p>Entenda a governança corporativa aplicada às cooperativas financeiras.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="full-col">
+                <button class="cta-button" onclick="openModal()">Quero obter</button>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-50">
+                <img class="image" src="/public/image2.jpg" alt="Imagem 1">
+            </div>
+            <div class="col-50">
+                <h2>Benefícios</h2>
+                <p>Os alunos terão acesso a professores renomados, networking e certificação reconhecida.</p>
+                <button class="cta-button" onclick="openModal()">Quero obter</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeModal()"></div>
+    <div class="modal" id="modal">
+        <h2>Quero obter</h2>
+        <p>Preencha os dados abaixo para receber mais informações sobre o curso:</p>
+        <form action="#" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Digite seu email"><br><br>
+
+            <label for="celular">Celular:</label>
+            <input type="tel" id="celular" name="celular" pattern="\d{11,13}" required placeholder="Digite o número com DDD"><br><br>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+
+    <script src="script.js">
+        function openModal() {
+            document.getElementById("modal").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
+</body>
+</html>
