@@ -139,12 +139,18 @@
 
         input[type="text"],
         input[type="email"],
-        input[type="tel"] {
+        input[type="tel"],
+        select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
+        }
+
+        select {
+            background-color: white;
+            cursor: pointer;
         }
 
         input[type="submit"] {
@@ -160,9 +166,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: white;
-            color: black;
-            border: 1px solid #2cbc59;
+            background-color: #228e44;
         }
 
         input[type="submit"]:disabled {
@@ -270,7 +274,24 @@
 
                 <div class="form-group">
                     <label for="graduacao">Graduação:</label>
-                    <input type="text" id="graduacao" name="graduacao" required placeholder="Digite sua formação">
+                    <select id="graduacao" name="graduacao" required>
+                        <option value="" disabled selected>Selecione sua formação</option>
+                        <option value="Ensino Fundamental Incompleto">Ensino Fundamental Incompleto</option>
+                        <option value="Ensino Fundamental Completo">Ensino Fundamental Completo</option>
+                        <option value="Ensino Médio Incompleto">Ensino Médio Incompleto</option>
+                        <option value="Ensino Médio Completo">Ensino Médio Completo</option>
+                        <option value="Ensino Técnico Incompleto">Ensino Técnico Incompleto</option>
+                        <option value="Ensino Técnico Completo">Ensino Técnico Completo</option>
+                        <option value="Ensino Superior Incompleto">Ensino Superior Incompleto</option>
+                        <option value="Ensino Superior Completo">Ensino Superior Completo</option>
+                        <option value="Pós-Graduação Incompleta">Pós-Graduação Incompleta</option>
+                        <option value="Pós-Graduação Completa">Pós-Graduação Completa</option>
+                        <option value="Mestrado Incompleto">Mestrado Incompleto</option>
+                        <option value="Mestrado Completo">Mestrado Completo</option>
+                        <option value="Doutorado Incompleto">Doutorado Incompleto</option>
+                        <option value="Doutorado Completo">Doutorado Completo</option>
+                        <option value="Pós-Doutorado">Pós-Doutorado</option>
+                    </select>
                     <div id="graduacaoError" class="error-message"></div>
                 </div>
 
@@ -295,5 +316,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-
 </html>
