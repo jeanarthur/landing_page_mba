@@ -314,6 +314,37 @@
         </form>
     </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js">
+      function openModal() {
+          document.getElementById("modal").style.display = "block";
+          document.getElementById("overlay").style.display = "block";
+      }
+      function closeModal() {
+          document.getElementById("modal").style.display = "none";
+          document.getElementById("overlay").style.display = "none";
+      }
+      document.getElementById("registroForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const formData = new FormData(this);
+
+      fetch("/register", {
+          method: "POST",
+          body: formData
+      })
+      .then(response => {
+          if (response.ok) {
+              alert("Dados enviados com sucesso!");
+              closeModal();
+              this.reset();
+          } else {
+              alert("Erro ao enviar os dados. Tente novamente.");
+          }
+      })
+      .catch(error => {
+          console.error("Erro:", error);
+          alert("Erro ao enviar os dados.");
+      });
+    </script>
 </body>
 </html>
