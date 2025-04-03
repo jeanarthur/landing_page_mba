@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 
-const cadastroRoutes = require('./routes/cadastro');
+const cadastroRoutes = require('./routes/cadastro.js');
 
 const app = express();
 

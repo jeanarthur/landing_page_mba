@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const usuarioSchema = require("./schemas/userSchema.js")
+const usuarioSchema = require("../schemas/userSchema.js");
 
 router.post('/register', (req, res) => {
     try {
