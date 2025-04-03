@@ -100,65 +100,78 @@ document.addEventListener("DOMContentLoaded", function () {
     function validateNome() {
         const nome = nomeInput.value.trim();
         if (nome === '') {
-            showError('nome', 'Por favor, insira seu nome completo');
+            if (touchedFields.nome) {
+                showError('nome', 'Por favor, insira seu nome completo');
+            }
             return false;
         }
         hideError('nome');
         return true;
     }
-    
+
     function validateEmail() {
         const email = emailInput.value.trim();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
         if (email === '') {
-            showError('email', 'Por favor, insira seu email');
+            if (touchedFields.email) {
+                showError('email', 'Por favor, insira seu email');
+            }
             return false;
         }
         
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            showError('email', 'Por favor, insira um email válido');
+            if (touchedFields.email) {
+                showError('email', 'Por favor, insira um email válido');
+            }
             return false;
         }
         
         hideError('email');
         return true;
     }
-    
+
     function validateCelular() {
         const celular = celularInput.value.replace(/\D/g, '');
         if (celular.length < 11) {
-            showError('celular', 'Por favor, insira um número válido com DDD');
+            if (touchedFields.celular) {
+                showError('celular', 'Por favor, insira um número válido com DDD');
+            }
             return false;
         }
         hideError('celular');
         return true;
     }
-    
+
     function validateGraduacao() {
-        const graduacao = graduacaoInput.value.trim();
+        const graduacao = graduacaoInput.value;
         if (graduacao === '') {
-            showError('graduacao', 'Por favor, insira sua graduação');
+            if (touchedFields.graduacao) {
+                showError('graduacao', 'Por favor, selecione sua formação');
+            }
             return false;
         }
         hideError('graduacao');
         return true;
     }
-    
+
     function validateCargo() {
         const cargo = cargoInput.value.trim();
         if (cargo === '') {
-            showError('cargo', 'Por favor, insira seu cargo');
+            if (touchedFields.cargo) {
+                showError('cargo', 'Por favor, insira seu cargo');
+            }
             return false;
         }
         hideError('cargo');
         return true;
     }
-    
+
     function validateSalario() {
         const salario = salarioInput.value.trim();
         if (salario === '' || salario === 'R$ 0,00') {
-            showError('salario', 'Por favor, insira sua faixa salarial');
+            if (touchedFields.salario) {
+                showError('salario', 'Por favor, insira sua faixa salarial');
+            }
             return false;
         }
         hideError('salario');
@@ -189,15 +202,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     function updateSubmitButtonState() {
-        const isNomeValid = !touchedFields.nome || validateNome();
-        const isEmailValid = !touchedFields.email || validateEmail();
-        const isCelularValid = !touchedFields.celular || validateCelular();
-        const isGraduacaoValid = !touchedFields.graduacao || validateGraduacao();
-        const isCargoValid = !touchedFields.cargo || validateCargo();
-        const isSalarioValid = !touchedFields.salario || validateSalario();
+        const isNomeValid = validateNome();
+        const isEmailValid = validateEmail();
+        const isCelularValid = validateCelular();
+        const isGraduacaoValid = validateGraduacao();
+        const isCargoValid = validateCargo();
+        const isSalarioValid = validateSalario();
+        
+        const isNomeFilled = nomeInput.value.trim() !== '';
+        const isEmailFilled = emailInput.value.trim() !== '';
+        const isCelularFilled = celularInput.value.replace(/\D/g, '').length >= 11;
+        const isGraduacaoFilled = graduacaoInput.value !== '';
+        const isCargoFilled = cargoInput.value.trim() !== '';
+        const isSalarioFilled = salarioInput.value.trim() !== '' && salarioInput.value.trim() !== 'R$ 0,00';
         
         submitButton.disabled = !(isNomeValid && isEmailValid && isCelularValid && 
-                                isGraduacaoValid && isCargoValid && isSalarioValid);
+                                isGraduacaoValid && isCargoValid && isSalarioValid &&
+                                isNomeFilled && isEmailFilled && isCelularFilled &&
+                                isGraduacaoFilled && isCargoFilled && isSalarioFilled);
     }
     
     form.addEventListener("submit", async function (event) {
@@ -230,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 nome: nomeInput.value.trim(),
                 email: emailInput.value.trim(),
                 celular: celularInput.value.replace(/\D/g, ''),
-                graduacao: graduacaoInput.value.trim(),
+                graduacao: graduacaoInput.value,
                 cargo: cargoInput.value.trim(),
                 salario: salarioInput.value.trim()
             };
