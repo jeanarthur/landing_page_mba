@@ -265,12 +265,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: JSON.stringify(formData),
             });
             
-            const result = await response.json();
-            
             if (response.ok) {
-                alert("Cadastro realizado com sucesso!");
+                // Criar um link temporário para o download
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'material.pdf';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                a.remove();
+                
+                alert("Cadastro realizado com sucesso! O download do material começará automaticamente.");
                 closeModal();
             } else {
+                const result = await response.json();
                 alert("Erro: " + (result.message || "Erro desconhecido"));
             }
         } catch (error) {
